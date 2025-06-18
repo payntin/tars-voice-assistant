@@ -429,3 +429,55 @@ textInput.addEventListener('focus', () => textInput.select());
 
 // ======== Initial ========
 toggleCore(false);
+// ... Existing imports and setup ...
+
+// Utility to create a linear message (no bubble)
+function createMessageElement(text, sender) {
+  const div = document.createElement('div');
+  div.className = 'message ' + (sender === 'user' ? 'user' : 'tars');
+  div.textContent = text;
+  return div;
+}
+
+// Example usage in your send/receive logic:
+// Instead of wrapping with <div class="bubble">,
+// insert directly into #chat-window as a .message block
+
+function appendUserMessage(text) {
+  const chatWindow = document.getElementById('chat-window');
+  const msgElem = createMessageElement(text, 'user');
+  chatWindow.appendChild(msgElem);
+  chatWindow.scrollTop = chatWindow.scrollHeight;
+}
+
+function appendTarsMessage(text) {
+  const chatWindow = document.getElementById('chat-window');
+  const msgElem = createMessageElement(text, 'tars');
+  chatWindow.appendChild(msgElem);
+  chatWindow.scrollTop = chatWindow.scrollHeight;
+}
+
+// Replace all previous logic that uses .bubble with the above
+
+// Example: Handling form submission to send user input
+document.getElementById('input-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const input = document.getElementById('text-input');
+  const text = input.value.trim();
+  if (!text) return;
+  appendUserMessage(text);
+  input.value = '';
+  // Call your TARS backend/AI logic, then on response:
+  // appendTarsMessage(responseText);
+});
+
+// ... Rest of your logic (voice, settings, etc.) remains unchanged ...
+
+// --- Fix for Logo Not Appearing ---
+// If the logo still doesn't show, ensure tars-logo.svg exists in your project root.
+// Add a fallback in case the image fails to load:
+document.querySelectorAll('img[id^="tars-logo"]').forEach(img => {
+  img.onerror = () => {
+    img.style.display = "none";
+  };
+});
