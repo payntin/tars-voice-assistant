@@ -73,6 +73,12 @@
         <label>
           <input type="checkbox" id="speech-output-toggle" checked /> Speech Output
         </label>
+        <!-- ======= Music Mute/Unmute Toggle (NEW) ======= -->
+        <label id="music-toggle-label" style="display:flex;align-items:center;gap:0.5em;">
+          <span id="music-toggle-status" title="Background music status">🔊</span>
+          <button type="button" id="audio-toggle" style="flex:1;">Mute Music</button>
+        </label>
+        <!-- ======= End Music Toggle ======= -->
         <hr/>
         <button id="clear-history">Clear Chat History</button>
         <button id="export-history">Export Chat</button>
@@ -126,11 +132,14 @@
     </div>
   </div>
 
-  <!-- Space music audio element and mute/unmute button -->
+  <!-- Space music audio element (unchanged) -->
   <audio id="space-audio" src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9e7b5e.mp3" loop autoplay></audio>
+
+  <!-- ======= Removed old floating music button =======
   <button id="audio-toggle" style="position:fixed;bottom:1em;right:1em;z-index:1000;">
     🔊 Mute Music
   </button>
+  ======= End Removed Section ======= -->
 
   <script type="module" src="main.js"></script>
 </body>
