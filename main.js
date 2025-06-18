@@ -430,6 +430,22 @@ textInput.addEventListener('focus', () => textInput.select());
 // ======== Initial ========
 toggleCore(false);
 
+// ======== Space Music Mute/Unmute ========
+const audio = document.getElementById('space-audio');
+const audioToggle = document.getElementById('audio-toggle');
+
+if (audio && audioToggle) {
+  audioToggle.onclick = () => {
+    audio.muted = !audio.muted;
+    audioToggle.textContent = audio.muted ? "🔇 Unmute Music" : "🔊 Mute Music";
+  };
+  // Restore mute state from previous session if needed (optional)
+  // audio.muted = localStorage.getItem('tars_music_muted') === '1';
+  // audioToggle.textContent = audio.muted ? "🔇 Unmute Music" : "🔊 Mute Music";
+  // audio.onvolumechange = () => {
+  //   localStorage.setItem('tars_music_muted', audio.muted ? '1' : '');
+  // };
+}
 // --- Fix for Logo Not Appearing ---
 document.querySelectorAll('img[id^="tars-logo"]').forEach(img => {
   img.onerror = () => {
