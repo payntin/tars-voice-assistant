@@ -1,13 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
+/* Prevent scrolling on the entire page except the chat window */
+html, body {
+  height: 100vh;
+  overflow: hidden !important;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   background: #05080e;
   color: #00ffde;
   font-family: 'Share Tech Mono', monospace;
-  margin: 0;
-  padding: 0;
   min-height: 100vh;
-  overflow-x: hidden;
 }
 
 #stars-bg {
@@ -23,12 +28,13 @@ body {
 #tars-container {
   display: flex;
   min-height: 100vh;
+  height: 100vh;
   z-index: 1;
   position: relative;
   background: transparent;
+  overflow: hidden;
 }
 
-/* Sidebar (Personality Core) */
 #personality-core {
   width: 320px;
   background: #1c2b2f;
@@ -38,6 +44,7 @@ body {
   overflow: auto;
   box-shadow: 2px 0 30px #001e1c77;
   z-index: 2;
+  max-height: 100vh;
 }
 #personality-core.collapsed {
   width: 0;
@@ -120,7 +127,9 @@ body {
   flex-direction: column;
   background: #11181f;
   min-height: 100vh;
+  max-height: 100vh;
   position: relative;
+  overflow: hidden;
 }
 #console-main header {
   display: flex;
@@ -197,6 +206,9 @@ body {
   gap: 0;
   font-size: 1.12em;
   background: linear-gradient(180deg, #0c1117 80%, #0b171a 100%);
+  min-height: 0;
+  /* Ensure chat window fits remaining space between header/footer */
+  max-height: calc(100vh - 70px); /* adjust 70px to fit actual header+footer if needed */
 }
 
 .message {
