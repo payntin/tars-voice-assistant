@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>TARS Voice Assistant</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" href="tars-logo.svg" type="image/svg+xml"/>
+</head>
+<body>
+  <div id="stars-bg"></div>
+  <div id="tars-container" class="theme-tars">
+    <aside id="personality-core" class="collapsed">
+      <header>
+        <img src="tars-logo.svg" alt="TARS Logo" />
+        <h2>TARS Personality Core</h2>
+        <button id="core-toggle" title="Toggle Core">&#9776;</button>
+      </header>
+      <section>
+        <button id="tars-voice-preset" title="Set TARS-like voice, pitch, rate">TARS Voice Preset</button>
+        <label>
+          OpenAI API Key
+          <input type="password" id="api-key" placeholder="sk-..." autocomplete="off" />
+        </label>
+        <label>
+          Humor
+          <input type="range" min="0" max="100" value="50" id="humor-range"/>
+          <span id="humor-value">50</span>
+        </label>
+        <label>
+          Honesty
+          <input type="range" min="0" max="100" value="90" id="honesty-range"/>
+          <span id="honesty-value">90</span>
+        </label>
+        <label>
+          Verbosity
+          <input type="range" min="1" max="3" value="2" id="verbosity-range"/>
+          <span id="verbosity-value">2</span>
+        </label>
+        <label>
+          Mission Mode
+          <select id="mission-mode">
+            <option value="default">Default</option>
+            <option value="explorer">Explorer</option>
+            <option value="survival">Survival</option>
+            <option value="humorist">Humorist</option>
+          </select>
+        </label>
+        <label>
+          Voice
+          <select id="voice-select"></select>
+        </label>
+        <label>
+          Rate
+          <input type="range" min="0.5" max="2" step="0.01" value="1" id="rate-range"/>
+          <span id="rate-value">1</span>
+        </label>
+        <label>
+          Pitch
+          <input type="range" min="0" max="2" step="0.01" value="1.1" id="pitch-range"/>
+          <span id="pitch-value">1.1</span>
+        </label>
+        <label>
+          Theme
+          <select id="theme-select">
+            <option value="tars">TARS (Classic)</option>
+            <option value="dark">Dark</option>
+            <option value="light">Light</option>
+            <option value="retro">Retro Console</option>
+          </select>
+        </label>
+        <label>
+          <input type="checkbox" id="speech-output-toggle" checked /> Speech Output
+        </label>
+        <hr/>
+        <button id="clear-history">Clear Chat History</button>
+        <button id="export-history">Export Chat</button>
+        <button id="import-history">Import Chat</button>
+        <input type="file" id="import-file" accept=".json" style="display:none"/>
+        <button id="clear-session">Clear Session</button>
+        <hr/>
+        <button id="about-btn">About</button>
+        <button id="interstellar-fact-btn">Interstellar Fact</button>
+      </section>
+    </aside>
+    <main id="console-main">
+      <header>
+        <div class="tars-banner">
+          <div class="tars-block"></div>
+          <div class="tars-block"></div>
+          <div class="tars-block"></div>
+          <div class="tars-block"></div>
+        </div>
+        <img src="tars-logo.svg" alt="TARS Logo" />
+        <h1>TARS AI ASSISTANT</h1>
+        <button id="emergency-btn" title="Emergency">!</button>
+        <button id="core-toggle-main" title="Settings">&#9881;</button>
+      </header>
+      <section id="chat-window"></section>
+      <footer>
+        <form id="input-form" autocomplete="off">
+          <input type="text" id="text-input" placeholder="Type or use mic... (Tab to focus, Enter to send)" autocomplete="off"/>
+          <button type="button" id="mic-btn" title="Speak (Ctrl+M)">&#127908;</button>
+          <button type="submit" id="send-btn" title="Send (Enter)">&#9658;</button>
+        </form>
+        <div id="mission-log">
+          <span id="msg-count">0 exchanges</span>
+          <span id="last-user-msg"></span>
+        </div>
+      </footer>
+    </main>
+    <div id="about-modal" class="modal hidden">
+      <div class="modal-content">
+        <h2>About TARS Assistant</h2>
+        <ul>
+          <li>Browser-only, voice-enabled AI inspired by TARS from <em>Interstellar</em></li>
+          <li>Uses your own OpenAI API key—never leaves your browser</li>
+          <li>Type or use mic (<b>Ctrl+M</b>), toggle speech output, and customize personality</li>
+          <li>Keyboard: <b>Tab</b> to focus input, <b>Enter</b> to send, <b>Esc</b> to close panels</li>
+          <li>Settings: <b>Personality Core</b> sidebar</li>
+          <li>Export/import chat, clear session, and more</li>
+        </ul>
+        <button id="close-about">Close</button>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="main.js"></script>
+</body>
+</html>
